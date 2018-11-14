@@ -1,7 +1,8 @@
 package data;
 
-import java.util.ArrayList;
 import base.City;
+
+import java.util.ArrayList;
 
 public class TSPLIBReader {
     protected InstanceReader instanceReader;
@@ -49,7 +50,7 @@ public class TSPLIBReader {
             coordinates[i][1] = Double.valueOf(split[1].trim());  // x
             coordinates[i][2] = Double.valueOf(split[2].trim());  // y
 
-            cities.add(i,new City((int)coordinates[i][0],coordinates[i][1],coordinates[i][2]));
+            cities.add(i, new City((int) coordinates[i][0], coordinates[i][1], coordinates[i][2]));
 
             i++;
             line = instanceReader.readLine();
@@ -67,15 +68,15 @@ public class TSPLIBReader {
                     double x2 = coordinates[j][1];
                     double y2 = coordinates[j][2];
 
-                    distances[i][j] = euclideanDistance(x1,y1,x2,y2);
+                    distances[i][j] = euclideanDistance(x1, y1, x2, y2);
                     distances[j][i] = distances[i][j];
                 }
     }
 
-    public static double euclideanDistance(double x1,double y1,double x2,double y2) {
+    public static double euclideanDistance(double x1, double y1, double x2, double y2) {
         double xDistance = Math.abs(x1 - x2);
         double yDistance = Math.abs(y1 - y2);
-        return Math.sqrt(Math.pow(xDistance,2) + Math.pow(yDistance,2));
+        return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
     }
 
     public ArrayList<City> getCities() {

@@ -10,7 +10,7 @@ public class InstanceReader {
     protected BufferedReader bufferedReader;
     protected String filename;
 
-    public InstanceReader(String filename){
+    public InstanceReader(String filename) {
         this.filename = filename;
     }
 
@@ -35,7 +35,7 @@ public class InstanceReader {
         }
     }
 
-    public String readLine(){
+    public String readLine() {
         try {
             return bufferedReader.readLine();
         } catch (IOException e) {
@@ -48,11 +48,11 @@ public class InstanceReader {
         return Integer.valueOf(readLine());
     }
 
-    public double[][] readDoubleMatrix(int i,int j) {
-        return readDoubleMatrix(i,j,",");
+    public double[][] readDoubleMatrix(int i, int j) {
+        return readDoubleMatrix(i, j, ",");
     }
 
-    public double[][] readDoubleMatrix(int i,int j,String separator) {
+    public double[][] readDoubleMatrix(int i, int j, String separator) {
         double[][] result = new double[i][j];
 
         for (int k = 0; k < i; k++) {
@@ -74,15 +74,15 @@ public class InstanceReader {
         return result;
     }
 
-    public int[] readIntVector(int size,String separator) {
+    public int[] readIntVector(int size, String separator) {
         return readIntVector(",");
     }
 
-    public int[][] readIntMatrix(int i,int j) {
-        return readIntMatrix(i,j,",");
+    public int[][] readIntMatrix(int i, int j) {
+        return readIntMatrix(i, j, ",");
     }
 
-    public int[][] readIntMatrix(int i,int j,String separator) {
+    public int[][] readIntMatrix(int i, int j, String separator) {
         int[][] result = new int[i][j];
 
         for (int k = 0; k < i; k++) {

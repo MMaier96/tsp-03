@@ -9,29 +9,306 @@
 	  maximumNumberOfEvaluations <integer>
 -->
 
-<?xml version="1.0"?>
+
 <configuration>
- <scenario id="s01">
-  <crossover>PartiallyMatched</crossover>
-  <crossoverRatio>0.7</crossoverRatio>
-  <mutation>Exchange</mutation>
-  <mutationRatio>0.0005</mutationRatio>
-  <selection>RouletteWheel</selection>
-  <buildStatistics>yes</buildStatistics>
-  <isEvaluated>yes</isEvaluated>
-  <evaluation>BruteForce</evaluation>
-  <maximumNumberOfEvaluations>1000000000</maximumNumberOfEvaluations>
- </scenario>
- 
+  <scenario id="s01">
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.8</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
   <scenario id="s02">
-  <crossover>PartiallyMatched</crossover>
-  <crossoverRatio>0.6</crossoverRatio>
-  <mutation>Exchange</mutation>
-  <mutationRatio>0.0001</mutationRatio>
-  <selection>RouletteWheel</selection>
-  <buildStatistics>yes</buildStatistics>
-  <isEvaluated>yes</isEvaluated>
-  <evaluation>RouletteWheel</evaluation>
-  <maximumNumberOfEvaluations>1000000000</maximumNumberOfEvaluations>
- </scenario>
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s03">
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.6</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s04">
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.8</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s05">
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s06">
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.6</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s07">
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>displacement</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s08">
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>displacement</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>Tournament</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s09">
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>heuristic</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s10">
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>insertion</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s11">
+   <crossover>partiallymatched</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>inversion</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s12">
+   <crossover>cycle</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s13">
+   <crossover>cycle</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s14">
+   <crossover>cycle</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>Exchange</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>Tournament</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s15">
+   <crossover>heuristic</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s16">
+   <crossover>heuristic</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>insertion</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s17">
+   <crossover>heuristic</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>inversion</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s18">
+   <crossover>ordered</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>Tournament</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s19">
+   <crossover>ordered</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>displacement</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s20">
+   <crossover>ordered</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>insertion</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s21">
+   <crossover>positionbased</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>Tournament</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s22">
+   <crossover>positionbased</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>heuristic</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s23">
+   <crossover>positionbased</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>inversion</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>Tournament</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s24">
+   <crossover>subtourexchange</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>exchange</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>Tournament</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>no</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
+  <scenario id="s25">
+   <crossover>subtourexchange</crossover>
+   <crossoverRatio>0.7</crossoverRatio>
+   <mutation>displacement</mutation>
+   <mutationRatio>0.0005</mutationRatio>
+   <selection>RouletteWheel</selection>
+   <buildStatistics>yes</buildStatistics>
+   <isEvaluated>yes</isEvaluated>
+   <evaluation>BruteForce</evaluation>
+   <maximumNumberOfEvaluations>4000000000</maximumNumberOfEvaluations>
+  </scenario>
+
 </configuration>

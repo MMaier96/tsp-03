@@ -7,22 +7,17 @@ import main.Configuration;
 import java.util.ArrayList;
 
 public class TournamentSelection implements ISelection {
-    public ArrayList<Tour> doSelection(Population population) {
+    public ArrayList<Tour> doSelection(Population population) throws PopulationTooSmallException {
+
+        int size = Configuration.instance.TOURNAMENT_SELECT_COUNT * 2;
+        if (population.getTours().size() < size) {
+            throw new PopulationTooSmallException();
+        }
 
         ArrayList<Tour> result = new ArrayList<>();
         ArrayList<Tour> selected = new ArrayList<>();
 
-        int size = Configuration.instance.TOURNAMENT_SELECT_COUNT * 2;
-
-        if (size > population.getTours().size()) {
-            size = population.getTours().size();
-
-            if (size %2 == 1) {
-                size--;
-            }
-        }
-
-        for (int i = 0; i < size;) {
+        for (int i = 0; i < size; ) {
             Tour select = population.getTours().get(Configuration.instance.random
                     .nextInt(population.getTours().size()));
 
@@ -32,11 +27,11 @@ public class TournamentSelection implements ISelection {
             }
         }
 
-        for (int i = 0; i < selected.size(); i+= 2) {
-            if (selected.get(i).getFitness() < selected.get(i+1).getFitness()) {
+        for (int i = 0; i < selected.size(); i += 2) {
+            if (selected.get(i).getFitness() < selected.get(i + 1).getFitness()) {
                 result.add(selected.get(i));
             } else {
-                result.add(selected.get(i+1));
+                result.add(selected.get(i + 1));
             }
         }
 

@@ -2,25 +2,27 @@ package selection;
 
 import base.Population;
 import base.Tour;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import main.Configuration;
-import random.MersenneTwisterFast;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class RouletteWheelSelection implements ISelection {
 
-    public ArrayList<Tour> doSelection(Population population) {
-        ArrayList<Tour> result = new ArrayList<>();
+    private SortedMap<Double, Tour> probabilityTourMap;
 
-        int size = Configuration.instance.ROULETTE_WHEEL_SELECT_COUNT;
+    public ArrayList<Tour> doSelection(Population population) throws PopulationTooSmallException {
 
-        if (size > population.getTours().size()) {
-            size = population.getTours().size();
+        if (population.getTours().size() < Configuration.instance.ROULETTE_WHEEL_SELECT_COUNT) {
+            throw new PopulationTooSmallException();
         }
 
-        for (int i = 0; i < size;) {
-            Tour select = doSingleSelection(population);
+        probabilityTourMap = calculateProbabilityTourMap(population);
+        ArrayList<Tour> result = new ArrayList<>();
+
+        for (int i = 0; i < Configuration.instance.ROULETTE_WHEEL_SELECT_COUNT; ) {
+            Tour select = doSingleSelection();
 
             if (!result.contains(select)) {
                 result.add(select);
@@ -31,10 +33,10 @@ public class RouletteWheelSelection implements ISelection {
         return result;
     }
 
-    public Tour doSingleSelection(Population population) {
+    public Tour doSingleSelection() {
         double chance = Configuration.instance.random.nextDouble();
 
-        SortedMap<Double, Tour> probabilityMap = getProbabilityTourMap(population);
+        SortedMap<Double, Tour> probabilityMap = probabilityTourMap;
         for (double key : probabilityMap.keySet()) {
             if (chance <= key) {
                 return probabilityMap.get(key);
@@ -57,13 +59,13 @@ public class RouletteWheelSelection implements ISelection {
         return fitnessSum;
     }
 
-    private static SortedMap<Double, Tour> getProbabilityTourMap(Population population) {
+    private SortedMap<Double, Tour> calculateProbabilityTourMap(Population population) {
         final double fitnessSum = getFitnessSum(population);
         SortedMap<Double, Tour> tourMap = new TreeMap<>();
 
         double probability = 0;
         for (Tour tour : population.getTours()) {
-            probability += tour.getFitness()/fitnessSum;
+            probability += tour.getFitness() / fitnessSum;
             tourMap.put(probability, tour);
         }
 

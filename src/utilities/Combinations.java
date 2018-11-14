@@ -7,7 +7,7 @@ public class Combinations {
         char[] characters = string.toCharArray();
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0;i < characters.length;i++) {
+        for (int i = 0; i < characters.length; i++) {
             stringBuilder.append(characters[i]);
             if (i > 5 && i % 75 == 0)
                 stringBuilder.append("\n");
@@ -18,7 +18,7 @@ public class Combinations {
 
     public static String factorial(int n) {
         BigInteger result = BigInteger.ONE;
-        for (int i = 1;i <= n;i++)
+        for (int i = 1; i <= n; i++)
             result = result.multiply(BigInteger.valueOf(i));
         return result.toString();
     }

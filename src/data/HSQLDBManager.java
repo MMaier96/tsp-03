@@ -1,11 +1,11 @@
 package data;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import main.Configuration;
+import statistics.Statistics;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.function.DoubleUnaryOperator;
 
 public enum HSQLDBManager {
     instance;
@@ -19,7 +19,7 @@ public enum HSQLDBManager {
         try {
             Class.forName("org.hsqldb.jdbcDriver");
             String databaseURL = driverName + Configuration.instance.databaseFile;
-            connection = DriverManager.getConnection(databaseURL,username,password);
+            connection = DriverManager.getConnection(databaseURL, username, password);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -45,70 +45,96 @@ public enum HSQLDBManager {
     public void dropTable() {
         System.out.println("--- dropTable");
 
+/*
         StringBuilder sqlStringBuilder = new StringBuilder();
         sqlStringBuilder.append("DROP TABLE data");
         System.out.println("sqlStringBuilder : " + sqlStringBuilder.toString());
-
         update(sqlStringBuilder.toString());
+*/
+
+        StringBuilder sqlStringBuilder1 = new StringBuilder();
+        sqlStringBuilder1.append("DROP TABLE iterations");
+        System.out.println("sqlStringBuilder : " + sqlStringBuilder1.toString());
+        update(sqlStringBuilder1.toString());
     }
 
     public void createTable() {
-        StringBuilder sqlStringBuilder = new StringBuilder();
+/*        StringBuilder sqlStringBuilder = new StringBuilder();
         sqlStringBuilder.append("CREATE TABLE data ").append(" ( ");
         sqlStringBuilder.append("id BIGINT NOT NULL").append(",");
         sqlStringBuilder.append("test VARCHAR(20) NOT NULL").append(",");
         sqlStringBuilder.append("PRIMARY KEY (id)");
-        sqlStringBuilder.append(" )");
-        update(sqlStringBuilder.toString());
+        sqlStringBuilder.append(" );");
+        System.out.println(sqlStringBuilder);
+        update(sqlStringBuilder.toString());*/
 
-        sqlStringBuilder.append("CREATE TABLE scenarios ").append(" ( ");
-        sqlStringBuilder.append("id VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("crossovertype VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("crossoverratio FLOAT(1,4) NOT NULL").append(",");
-        sqlStringBuilder.append("mutationtype  VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("mutationratio FLOAT(1,4) NOT NULL").append(",");
-        sqlStringBuilder.append("selection VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("buildstatistics VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("isevaluated VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("evaluation VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("maximumnumberofevaluations VARCHAR(20) NOT NULL");
-        sqlStringBuilder.append(" )");
-        update(sqlStringBuilder.toString());
 
-        sqlStringBuilder.append("CREATE TABLE iteration ").append(" ( ");
-        sqlStringBuilder.append("id VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("scenario VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("iterationid VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("fitness  VARCHAR(20) NOT NULL");
-        sqlStringBuilder.append(" )");
-        update(sqlStringBuilder.toString());
+        StringBuilder sqlStringBuilder1 = new StringBuilder();
+        sqlStringBuilder1.append("CREATE TABLE iterations ").append(" ( ");
+        sqlStringBuilder1.append("id VARCHAR(20) NOT NULL").append(",");
+        sqlStringBuilder1.append("iterationid  VARCHAR(20) NOT NULL").append(",");
+        sqlStringBuilder1.append("fitnessvalue VARCHAR(20) NOT NULL");
+        sqlStringBuilder1.append(" );");
+        System.out.println(sqlStringBuilder1);
+        update(sqlStringBuilder1.toString());
     }
 
-    public void addScenario(String id, String selectionType, String crossoverType, double crossoverratio,String mutationType,double mutationratio, boolean buildstatistics ,boolean isEvaluated,long maximumnumberofevaluations, double mutationProbability) {
-        String statement = "INSERT INTO scenarios(id, selectionType, crossoverType, mutationType, crossoverProbability, mutationProbability) VALUES (" +
+    public void addFitnessToScenario(String id, int iterationid, double fitnessvalue) {
+        String statement = "INSERT INTO iterations(id, iterationid, fitnessvalue) VALUES (" +
                 "'" + id + "'," +
-                "'" + crossoverType + "'," +
-                "'" + crossoverratio + "'," +
-                "'" + mutationType + "'," +
-                "'" + mutationratio + "'," +
-                "'" + selectionType + "'," +
-                "'" + buildstatistics + "'," +
-                "'" + isEvaluated + "'," +
-                "'" + maximumnumberofevaluations + "," +
-                mutationProbability + ");";
-        update(statement);
-    }
-
-    public void addFitnessInIteration(String id,String scenario,String iterationid,int fitness){
-        String statement = "INSERT INTO iteration(id, scenario, iterationid, fitness) VALUES (" +
-                "'" + id + "'," +
-                "'" + scenario + "'," +
                 "'" + iterationid + "'," +
-                "'" + fitness + ");";
+                "'" + fitnessvalue + "')";
         update(statement);
     }
 
-    public String buildSQLStatement(long id,String test) {
+    public void checkTable(int i){
+        String query = "SELECT fitnessvalue FROM iterations where id='s01'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            while (result.next()) {
+                                    //output[j] = result.getString(j+1);
+                    System.out.println(result.getDouble("fitnessvalue"));
+                }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    public void writeCsv(String scenarioId,int i) {
+        Statistics stat = new Statistics();
+        StringBuilder sqlStringBuilder = new StringBuilder();
+        sqlStringBuilder.append("SELECT fitnessvalue FROM iterations where id='");
+        sqlStringBuilder.append(scenarioId).append("'");
+            try {
+                Statement statement = connection.createStatement();
+                ResultSet result = statement.executeQuery(sqlStringBuilder.toString());
+                int size = 0;
+                if (result != null) {
+/*                    result.beforeFirst();
+                    result.last();*/
+                    size = result.getFetchSize();
+                }
+                ArrayList<Double> output = new ArrayList<Double>(size);
+                while (result.next()) {
+                        output.add(result.getDouble("fitnessvalue"));
+                    }
+
+                Double[] values = output.toArray(new Double[output.size()]);
+                stat.writeCSVFile(scenarioId, values);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+    }
+
+
+
+
+    public String buildSQLStatement(long id, String test) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("INSERT INTO data (id,test) VALUES (");
         stringBuilder.append(id).append(",");
@@ -119,7 +145,7 @@ public enum HSQLDBManager {
     }
 
     public void insert(String test) {
-        update(buildSQLStatement(System.nanoTime(),test));
+        update(buildSQLStatement(System.nanoTime(), test));
     }
 
     public void shutdown() {

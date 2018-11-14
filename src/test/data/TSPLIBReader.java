@@ -1,10 +1,10 @@
 package test.data;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-
 import data.InstanceReader;
 import main.Configuration;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class TSPLIBReader {
     @Test
@@ -12,6 +12,6 @@ public class TSPLIBReader {
         InstanceReader instanceReader = new InstanceReader(Configuration.instance.dataFilePath);
         instanceReader.open();
         data.TSPLIBReader tspLibReader = new data.TSPLIBReader(instanceReader);
-        assertEquals(280,tspLibReader.getCities().size());
+        assertEquals(280, tspLibReader.getCities().size());
     }
 }

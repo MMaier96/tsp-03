@@ -21,8 +21,8 @@ public class Tour implements Comparable<Tour> {
         cities.add(city);
     }
 
-    public void addCity(int index,City city) {
-        cities.set(index,city);
+    public void addCity(int index, City city) {
+        cities.set(index, city);
     }
 
     public int getSize() {
@@ -39,9 +39,9 @@ public class Tour implements Comparable<Tour> {
         for (int i = 0; i < cities.size(); i++) {
             double x1 = getCity(i).getX();
             double y1 = getCity(i).getY();
-            double x2 = getCity((i+1) % cities.size()).getX();
-            double y2 = getCity((i+1) % cities.size()).getY();
-            distance = distance + euclideanDistance(x1,y1,x2,y2);
+            double x2 = getCity((i + 1) % cities.size()).getX();
+            double y2 = getCity((i + 1) % cities.size()).getY();
+            distance = distance + euclideanDistance(x1, y1, x2, y2);
         }
 
         return distance;
@@ -58,18 +58,13 @@ public class Tour implements Comparable<Tour> {
         return stringBuilder.toString();
     }
 
-    public static double euclideanDistance(double x1,double y1,double x2,double y2) {
+    public static double euclideanDistance(double x1, double y1, double x2, double y2) {
         double xDistance = Math.abs(x1 - x2);
         double yDistance = Math.abs(y1 - y2);
-        return Math.sqrt(Math.pow(xDistance,2) + Math.pow(yDistance,2));
+        return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
     }
 
     public int compareTo(Tour otherTour) {
-        if (getFitness() < otherTour.getFitness())
-            return -1;
-        else if (getFitness() > otherTour.getFitness())
-            return 1;
-        else
-            return 0;
+        return Double.compare(getFitness(), otherTour.getFitness());
     }
 }
